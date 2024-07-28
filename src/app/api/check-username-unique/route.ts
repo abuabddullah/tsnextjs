@@ -19,6 +19,8 @@ export async function GET(request: Request) {
   try {
     // url : http://localhost:3000/check-username-unique?username=asif?query2=itsQuery2example
     const { searchParams } = new URL(request.url); // may be, searchParams=username=asif?query2=itsQuery2example
+    console.log("searchParams", searchParams);
+    console.log("searchParams.get('username') :", searchParams.get("username"));
     const queryParams = {
       username: searchParams.get("username"), // asif
     };
