@@ -21,30 +21,7 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDebounceCallback } from "usehooks-ts";
 // import { z } from "zod";
-import * as z from "zod"; // ??
-/* import { ApiResponse } from '@/types/ApiResponse';
-import { zodResolver } from '@hookform/resolvers/zod';
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { useDebounce } from 'usehooks-ts';
-import * as z from 'zod';
-
-import { Button } from '@/components/ui/button';
-import {
-  Form,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import { useToast } from '@/components/ui/use-toast';
-import axios, { AxiosError } from 'axios';
-import { Loader2 } from 'lucide-react';
-import { useRouter } from 'next/navigation';
-import { signUpSchema } from '@/schemas/signUpSchema';
- */
+import * as z from "zod"; // ???
 
 export default function SignUpForm() {
   const [username, setUsername] = useState(""); // to get the username in "/verify/username" route
@@ -92,6 +69,7 @@ export default function SignUpForm() {
 
   // post req for submit data for sign up
   const onSubmit = async (data: z.infer<typeof signUpSchema>) => {
+    // এখানে data = { username, email, password } হিসেবে form থেকে পাচ্ছি
     setIsSubmitting(true);
     try {
       // for submitting form with data
@@ -109,11 +87,11 @@ export default function SignUpForm() {
       // if any error submitting form
       console.error("Error during sign-up:", error);
 
-      const axiosError = error as AxiosError<ApiResponseType>; // ?? returns axiosError-object
+      const axiosError = error as AxiosError<ApiResponseType>; // ??? returns axiosError-object= {res,req,message}
 
       // Default error message
       let errorMessage = axiosError.response?.data.message;
-      ("There was a problem with your sign-up. Please try again.");
+      ("There was a problem with your sign-up. Please try again."); // ???
 
       toast({
         title: "Sign Up Failed",
@@ -146,7 +124,7 @@ export default function SignUpForm() {
                     {...field}
                     /* customizing */
                     onChange={(e) => {
-                      field.onChange(e); // ??
+                      field.onChange(e); // ???
                       debounced(e.target.value); // setting username in state for "/verify/username" page
                     }}
                     /* customized */
