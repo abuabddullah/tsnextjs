@@ -24,6 +24,7 @@ export async function GET(request: Request) {
       { $group: { _id: "$_id", messages: { $push: "$messages" } } }, // $group: এটি সব মেসেজগুলোকে আবার একটি অ্যারেতে পরিণত করবে। এখানে _id ব্যবহারকারীর _id হবে এবং messages একটি অ্যারে হবে যেখানে সব মেসেজগুলো থাকবে।
     ]).exec(); // এখানে একটা array return পাব i.e user=[{_id:USERIDxxxxxxxxxxx,messages:[]}]
 
+    /* // some error occurs যার কারনে user কে আমরা এখানে পাচ্ছিলাম না
     if (!user || user.length === 0) {
       return Response.json(
         { message: "User not found", success: false },
@@ -33,6 +34,23 @@ export async function GET(request: Request) {
 
     return Response.json(
       { messages: user[0].messages },
+      {
+        status: 200,
+      }
+    ); */
+
+    const finalUser = await UserModel.findById(_user._id);
+    console.log("user : ", finalUser);
+
+    if (!finalUser) {
+      return Response.json(
+        { message: "User not found", success: false },
+        { status: 404 }
+      );
+    }
+
+    return Response.json(
+      { messages: finalUser?.messages },
       {
         status: 200,
       }

@@ -43,10 +43,13 @@ import { ApiResponse } from '@/types/ApiResponse'; */
 
 type MessageCardProps = {
   message: Message;
-  onMessageDelete: (messageId: string) => void;
+  handleDeleteMessage: (messageId: string) => void;
 };
 
-export function MessageCard({ message, onMessageDelete }: MessageCardProps) {
+export function MessageCard({
+  message,
+  handleDeleteMessage,
+}: MessageCardProps) {
   const { toast } = useToast();
 
   // "delete-message" route not created
@@ -59,7 +62,7 @@ export function MessageCard({ message, onMessageDelete }: MessageCardProps) {
         title: "Delete Message",
         description: response.data.message,
       });
-      onMessageDelete(message._id);
+      handleDeleteMessage(message._id);
     } catch (error) {
       const axiosError = error as AxiosError<ApiResponseType>;
       toast({
