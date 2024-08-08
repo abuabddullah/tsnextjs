@@ -37,16 +37,6 @@ const SendMessage = () => {
   const params = useParams<{ username: string }>();
   const username = params.username;
 
-  /* const {
-    complete,
-    completion,
-    isLoading: isSuggestLoading,
-    error,
-  } = useCompletion({
-    api: "/api/suggest-messages",
-    initialCompletion: initialMessageString,
-  }); */
-
   const form = useForm<z.infer<typeof messageSchema>>({
     resolver: zodResolver(messageSchema),
   });
@@ -84,15 +74,6 @@ const SendMessage = () => {
       setIsLoading(false);
     }
   };
-
-  /* const fetchSuggestedMessages = async () => {
-    try {
-      complete("");
-    } catch (error) {
-      console.error("Error fetching messages:", error);
-      // Handle error appropriately
-    }
-  }; */
 
   return (
     <div className="container mx-auto my-8 p-6 bg-white rounded max-w-4xl">
@@ -149,23 +130,27 @@ const SendMessage = () => {
             <h3 className="text-xl font-semibold">Messages</h3>
           </CardHeader>
           <CardContent className="flex flex-col space-y-4">
-            {/* {error ? (
-              <p className="text-red-500">{error.message}</p>
-            ) : (
-              parseStringMessages(completion).map((message, index) => (
-                <Button
-                  key={index}
-                  variant="outline"
-                  className="mb-2"
-                  onClick={() => handleMessageClick(message)}
-                >
-                  {message}
-                </Button>
-              ))
-            )} */}
             <Button
               onClick={() =>
-                handleMessageClick("AI suggestions Need to implement")
+                handleMessageClick("AI suggestions Need to implement1")
+              }
+              variant="outline"
+              className="mb-2"
+            >
+              AI suggestions Need to implement
+            </Button>
+            <Button
+              onClick={() =>
+                handleMessageClick("AI suggestions Need to implement3")
+              }
+              variant="outline"
+              className="mb-2"
+            >
+              AI suggestions Need to implement
+            </Button>
+            <Button
+              onClick={() =>
+                handleMessageClick("AI suggestions Need to implement2")
               }
               variant="outline"
               className="mb-2"
