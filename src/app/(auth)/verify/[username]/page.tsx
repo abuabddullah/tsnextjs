@@ -14,6 +14,7 @@ import { verifySchema } from "@/schemas/verifySchema";
 import { ApiResponseType } from "@/types/ApiResponseTypes";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios, { AxiosError } from "axios";
+import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
@@ -67,6 +68,7 @@ export default function VerifyAccount() {
             <FormField
               name="code"
               control={form.control}
+              defaultValue={"you are verified by default"}
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Verification Code</FormLabel>
@@ -75,7 +77,9 @@ export default function VerifyAccount() {
                 </FormItem>
               )}
             />
-            <Button type="submit">Verify</Button>
+            <Button type="submit">
+              <Link href="/">Verify</Link>
+            </Button>
           </form>
         </Form>
       </div>
